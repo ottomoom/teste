@@ -2,12 +2,13 @@ package main
 
 import "fmt"
 
-var idade int
 var nome string
+var idade int
 
 func main() {
-	nome = "Ian"
+	nome = "Otto"
 	idade = 19
-	fmt.Println("O nome do usario é", nome)
-	fmt.Println("A idade do usario é", idade)
+	fmt.Printf("%v\n", nome)
+	fmt.Printf("%v\n", idade)
+
 }
