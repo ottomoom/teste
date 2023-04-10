@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Resultado</title>
+    <!--CSS-->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- texto -->
+    <h1>Resultado</h1>
+    <!--prints-->
+    <p>Nome de usuário: <span id="username"></span></p>
+    <p>Senha: <span id="password"></span></p>
+
+
+    <!--Js-->
+    <script>
+        //Localiza os valores pelo seu id
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('username');
+        const password = urlParams.get('password');
+        
+        const usernameSpan = document.querySelector('#username');
+        const passwordSpan = document.querySelector('#password');
+        
+        usernameSpan.textContent = username;
+        passwordSpan.textContent = password;
+    </script>
+</body>
+</html>
