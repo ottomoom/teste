@@ -9,12 +9,41 @@
     <!-- texto -->
     <h1>Resultado</h1>
     <!--prints-->
+
     <p>Nome de usuário: <span id="username"></span></p>
     <p>Senha: <span id="password"></span></p>
+    <!--Botão-->
 
+    <a href="login.html">Voltar</a>
 
+    <!--Download-->
+
+    <h1 id="texto_download">Clique na imagem para excutar o download</h1>
+    <ul id="lista_img">
+        <a href="dowl/costas.png" download="dowl/costas" id="img_costas">
+            <img src="dowl/costas.png" width="100"> </a>
+        <a href="dowl/frente.png" download="dowl/frente" id="imf_frente">
+            <img src="dowl/frente.png" width="100"> </a>
+    </ul>
+
+    <!--input_image-->
+    
+    <h1 id="texto_download">Envie sua imagem.</h1>
+    <label class="picture" for="picture__input" tabIndex="0">
+        <span class="picture__image"></span>
+      </label>
+      
+      <input type="file" name="picture__input" id="picture__input">
+
+    <!--Baixar imagem input_image-->
+
+      <a id="download_input"download="picture__image">Baixar imagem</a>
+    
     <!--Js-->
+    
     <script>
+        //botao
+       
         //Localiza os valores pelo seu id
         const urlParams = new URLSearchParams(window.location.search);
         const username = urlParams.get('username');
@@ -25,6 +54,37 @@
         
         usernameSpan.textContent = username;
         passwordSpan.textContent = password;
+        
+        //input image
+        const inputFile = document.querySelector("#picture__input");
+        const pictureImage = document.querySelector(".picture__image");
+        const pictureImageTxt = "Choose an image";
+        pictureImage.innerHTML = pictureImageTxt;
+
+        inputFile.addEventListener("change", function (e) {
+        const inputTarget = e.target;
+        const file = inputTarget.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.addEventListener("load", function (e) {
+            const readerTarget = e.target;
+
+            const img = document.createElement("img");
+            img.src = readerTarget.result;
+            img.classList.add("picture__img");
+
+            pictureImage.innerHTML = "";
+            pictureImage.appendChild(img);
+            });
+
+            reader.readAsDataURL(file);
+        } else {
+            pictureImage.innerHTML = pictureImageTxt;
+        }
+        });
+
     </script>
 </body>
 </html>
