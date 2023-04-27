@@ -7,11 +7,14 @@
 </head>
 <body>
     <!-- texto -->
-    <h1>Resultado</h1>
+    <h1>Login atual:</h1>
     <!--prints-->
-
     <p>Nome de usuário: <span id="username"></span></p>
     <p>Senha: <span id="password"></span></p>
+
+    <h1>Ultimo login:</h1>
+    <p>Nome de usuário: <span id="name"></span></p>
+    <p>Senha: <span id="pass"></span></p>
     <!--Botão-->
 
     <a href="login.html">Voltar</a>
@@ -37,7 +40,7 @@
 
     <!--Baixar imagem input_image-->
 
-      <a id="download_input"download="picture__image">Baixar imagem</a>
+     <button id="button_download_img_input">Baixar Imagem</button>
     
     <!--Js-->
     
@@ -54,7 +57,8 @@
         
         usernameSpan.textContent = username;
         passwordSpan.textContent = password;
-        
+
+        //localstorage
         //input image
         const inputFile = document.querySelector("#picture__input");
         const pictureImage = document.querySelector(".picture__image");
@@ -83,8 +87,33 @@
         } else {
             pictureImage.innerHTML = pictureImageTxt;
         }
-        });
+        const Download = document.getElementById("button_download_img_input");
+        Download.addEventListener("click", function () {
+        const imgFoto = document.querySelector(".picture__img");
+        if (imgFoto) {
+            const downloadLink = document.createElement("a");
+            downloadLink.href = imgFoto.src;
+            downloadLink.download = "minha_imagem.png";
+            downloadLink.click();
+    }
+});
 
+        });
+//Mostra os valores do locacal storage
+function showItems(){
+           let resultDIV = document.getElementById('d');
+           resultDIV.innerHTML = "";
+           if (localStorage.meuArr){             
+              arr = JSON.parse(localStorage.getItem('meuArr')); 
+           }
+           
+           for(var i in arr){
+              let p = document.createElement("p");
+              p.innerHTML = arr[i];
+              resultDIV.append(p);
+           }
+        }
+showItems();
     </script>
 </body>
 </html>
